@@ -1,28 +1,42 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+﻿using System.Windows;
+using LibraryApp.Data;
 
-namespace LibraryApp
+namespace LibraryApp;
+
+public partial class MainWindow : Window
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
-    public partial class MainWindow : Window
+    private AppDbContext _context;
+    private readonly DataStore _store;
+    public MainWindow()
     {
-        public MainWindow()
-        {
-            InitializeComponent();
-        }
+        InitializeComponent();
+    }
+
+    public MainWindow(DataStore store)
+    {
+        InitializeComponent();
+        _store = store;
+        _context = new AppDbContext();
+        CurrentUserNameTB.Text = _store.CurrentUser.FullName;
+    }
+    
+    private void CloseButtonClick(object sender, RoutedEventArgs e)
+    {
+        Close();
+    }
+    
+    private void PickTheBookButtonClick(object sender, RoutedEventArgs e)
+    {
+        MainFrame.Navigate(new PickABookPage(_store));
+    }
+
+    private void SeeRequestsButtonClick(object sender, RoutedEventArgs e)
+    {
+        MainFrame.Navigate(new RequestsPage(_store));
+    }
+
+    private void TakenBooksButtonClick(object sender, RoutedEventArgs e)
+    {
+        MainFrame.Navigate(new TakenBooksPage(_store));
     }
 }

@@ -1,0 +1,25 @@
+﻿<Page x:Class="LibraryApp.PickABookPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:local="clr-namespace:LibraryApp"
+      mc:Ignorable="d"
+      Title="PickTheBookPage" Height="auto" Width="auto">
+    <StackPanel>
+        <TextBox Name="SearchBarTBX" TextChanged="SearchBarTBXOnTextChanged"/>
+        <Button Content="Запросить книгу" Height="30" Click="TakeABookButtonClick"/>
+        <DataGrid Name="DataGrid" AutoGenerateColumns="False" ColumnWidth="auto">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Название" Binding="{Binding BookName}"/>
+                <DataGridTextColumn Header="Автор" Binding="{Binding Author.AuthorFullName}"/>
+                <DataGridTextColumn Header="Жанр" Binding="{Binding Genre.GenreName}"/>
+                <DataGridTextColumn Header="Издатель" Binding="{Binding Publisher.PublisherName}"/>
+                <DataGridTextColumn Header="Редактор" Binding="{Binding RedactorFullName}"/>
+                <DataGridTextColumn Header="ISBN" Binding="{Binding ISBN}"/>
+                <DataGridTextColumn Header="Кол-во страниц" Binding="{Binding NumberOfPages}"/>
+                <DataGridTextColumn Header="Кол-во в наличии" Binding="{Binding Amount}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+    </StackPanel>
+</Page>

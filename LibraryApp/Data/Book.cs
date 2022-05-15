@@ -15,7 +15,12 @@ public class Book
     public int AuthorId { get; set; }
     public int GenreId { get; set; }
     public int PublisherId { get; set; }
-    [DefaultValue(false)] public bool IsTaken { get; set; }
+    public int Amount { get; set; }
+
+    [NotMapped]
+    public string BookFullName =>
+        Author.AuthorFullName + ", " + BookName + ", " + Publisher.PublisherName + ", " + YearOfIssue + ", " +
+        NumberOfPages + "с.";
 
     [ForeignKey("AuthorId")] public Author Author { get; set; }
     [ForeignKey("GenreId")] public Genre Genre { get; set; }
