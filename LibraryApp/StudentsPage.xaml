@@ -1,0 +1,24 @@
+﻿<Page x:Class="LibraryApp.StudentsPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:local="clr-namespace:LibraryApp"
+      mc:Ignorable="d"
+      Title="StudentsPage" Height="Auto" Width="Auto">
+    <Grid>
+        <StackPanel>
+            <TextBox Name="SearchBarTBX" TextChanged="SearchBarTBXOnTextChanged"/>
+            <Button Height="30" Content="Подтвердить добавление/изменение пользователя" Click="ButtonBase_OnClick"/>
+            <DataGrid Name="DataGrid" AutoGenerateColumns="False" ColumnWidth="auto">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Фамилия" Binding="{Binding Surname}"/>
+                    <DataGridTextColumn Header="Имя" Binding="{Binding Name}"/>
+                    <DataGridTextColumn Header="Отчество" Binding="{Binding Patronymic}"/>
+                    <DataGridTextColumn Header="Логин" Binding="{Binding Login}"/>
+                    <DataGridTextColumn Header="Пароль" Binding="{Binding Password}" FontFamily="pack://application:,,,/#password" />
+                </DataGrid.Columns>
+            </DataGrid>
+        </StackPanel>
+    </Grid>
+</Page>

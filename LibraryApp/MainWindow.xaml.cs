@@ -18,13 +18,18 @@ public partial class MainWindow : Window
         _store = store;
         _context = new AppDbContext();
         CurrentUserNameTB.Text = _store.CurrentUser.FullName;
+        if (_store.CurrentUser.Role.RoleName != "Студент") return;
+        SeeRequestsButton.IsEnabled = false;
+        StudentsButton.IsEnabled = false;
+        TakenBooksButton.IsEnabled = false;
     }
-    
+
     private void CloseButtonClick(object sender, RoutedEventArgs e)
     {
+        new AuthorizationWindow().Show();
         Close();
     }
-    
+
     private void PickTheBookButtonClick(object sender, RoutedEventArgs e)
     {
         MainFrame.Navigate(new PickABookPage(_store));
@@ -38,5 +43,10 @@ public partial class MainWindow : Window
     private void TakenBooksButtonClick(object sender, RoutedEventArgs e)
     {
         MainFrame.Navigate(new TakenBooksPage(_store));
+    }
+
+    private void StudentsButtonClick(object sender, RoutedEventArgs e)
+    {
+        MainFrame.Navigate(new StudentsPage(_store));
     }
 }
