@@ -12,6 +12,7 @@ public class User
     public string Surname { get; set; }
     public string Name { get; set; }
     public string? Patronymic { get; set; }
+    public int AmountOfOverdue { get; set; }
     
     [NotMapped] public string FullName => Surname + ' ' + Name + ' ' + Patronymic;
     [ForeignKey("RoleId")] public Role Role { get; set; }

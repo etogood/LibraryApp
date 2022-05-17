@@ -13,6 +13,7 @@
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Книга" Binding="{Binding Book.BookFullName}"/>
                 <DataGridTextColumn Header="Читатель" Binding="{Binding User.FullName}"/>
+                <DataGridTextColumn Header="Код" Binding="{Binding Code}" Foreground="Blue"/>
                 <DataGridTextColumn Header="Дата выдачи" Binding="{Binding DateOfIssue, StringFormat={}{0:dd.MM.yyyy}}"/>
                 <DataGridTextColumn Header="Срок возвращения" Binding="{Binding DateOfDeadline, StringFormat={}{0:dd.MM.yyyy}}"/>
                 <DataGridTextColumn Header="Просрочено?" Binding="{Binding IsOverdue}" Foreground="Red"/>

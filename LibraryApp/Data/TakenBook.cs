@@ -10,6 +10,7 @@ public class TakenBook
     public int UserId { get; set; }
     public DateTime DateOfIssue { get; set; }
     public DateTime DateOfDeadline { get; set; }
+    public int Code { get; set; }
 
     [NotMapped] private string _isOverdue;
     [NotMapped] public string IsOverdue

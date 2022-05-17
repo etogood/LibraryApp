@@ -5,7 +5,6 @@ namespace LibraryApp;
 
 public partial class MainWindow : Window
 {
-    private AppDbContext _context;
     private readonly DataStore _store;
     public MainWindow()
     {
@@ -16,7 +15,6 @@ public partial class MainWindow : Window
     {
         InitializeComponent();
         _store = store;
-        _context = new AppDbContext();
         CurrentUserNameTB.Text = _store.CurrentUser.FullName;
         if (_store.CurrentUser.Role.RoleName != "Студент") return;
         SeeRequestsButton.IsEnabled = false;

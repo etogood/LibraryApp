@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using System.Windows;
 using LibraryApp.Data;
+using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 
 namespace LibraryApp;
@@ -20,15 +21,23 @@ public partial class AuthorizationWindow : Window
 
     private void LogInButtonClick(object sender, RoutedEventArgs e)
     {
-        var user = _context.Users.Include(x => x.Role).FirstOrDefault(x => x.Login == loginTBX.Text);
-        if (user != null && Equals(user.Password, passwordPBX.Password))
+        try
         {
-            _store.CurrentUser = user;
-            new MainWindow(_store).Show();
-            Close();
+            var user = _context.Users.Include(x => x.Role).FirstOrDefault(x => x.Login == loginTBX.Text);
+            if (user != null && Equals(user.Password, passwordPBX.Password))
+            {
+                _store.CurrentUser = user;
+                new MainWindow(_store).Show();
+                Close();
+            }
+            else
+                MessageBox.Show("Введён неверный логин или пароль", "Повторите попытку!", MessageBoxButton.OK,
+                    MessageBoxImage.Error);
         }
-        else
-            MessageBox.Show("Введён неверный логин или пароль", "Повторите попытку!", MessageBoxButton.OK,
+        catch (SqlException)
+        {
+            MessageBox.Show("Ошибка при взаимодействии с БД", "Обратитесь к системному администратору!", MessageBoxButton.OK,
                 MessageBoxImage.Error);
+        }
     }
 }

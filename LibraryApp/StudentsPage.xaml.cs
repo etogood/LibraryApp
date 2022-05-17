@@ -4,6 +4,7 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using LibraryApp.Data;
+using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 
 namespace LibraryApp;
@@ -24,24 +25,40 @@ public partial class StudentsPage : Page
         InitializeComponent();
         _store = store;
         _context = new AppDbContext();
-        UsersTable = new ObservableCollection<User>(_context.Users
-            .Include(x => x.Role)
-            .Where(x => x.Role.RoleName == "Студент")
-        );
-        DataGrid.ItemsSource = UsersTable;
+        try
+        {
+            UsersTable = new ObservableCollection<User>(_context.Users
+                .Include(x => x.Role)
+                .Where(x => x.Role.RoleName == "Студент")
+            );
+            DataGrid.ItemsSource = UsersTable;
+        }
+        catch (SqlException)
+        {
+            MessageBox.Show("Ошибка при взаимодействии с БД", "Обратитесь к системному администратору!", MessageBoxButton.OK,
+                MessageBoxImage.Error);
+        }
     }
 
     private void SearchBarTBXOnTextChanged(object sender, TextChangedEventArgs e)
     {
-        UsersTable = new ObservableCollection<User>(_context.Users
-            .Include(x => x.Role)
-            .Where(x => x.Role.RoleName == "Студент" && (
-                x.Surname.Contains(SearchBarTBX.Text) ||
-                x.Name.Contains(SearchBarTBX.Text) ||
-                x.Patronymic!.Contains(SearchBarTBX.Text) ||
-                x.Login.Contains(SearchBarTBX.Text)))
-        );
-        DataGrid.ItemsSource = UsersTable;
+        try
+        {
+            UsersTable = new ObservableCollection<User>(_context.Users
+                .Include(x => x.Role)
+                .Where(x => x.Role.RoleName == "Студент" && (
+                    x.Surname.Contains(SearchBarTBX.Text) ||
+                    x.Name.Contains(SearchBarTBX.Text) ||
+                    x.Patronymic!.Contains(SearchBarTBX.Text) ||
+                    x.Login.Contains(SearchBarTBX.Text)))
+            );
+            DataGrid.ItemsSource = UsersTable;
+        }
+        catch (SqlException)
+        {
+            MessageBox.Show("Ошибка при взаимодействии с БД", "Обратитесь к системному администратору!", MessageBoxButton.OK,
+                MessageBoxImage.Error);
+        }
     }
 
     private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
@@ -72,6 +89,11 @@ public partial class StudentsPage : Page
                             x.Login.Contains(SearchBarTBX.Text)))
             );
             DataGrid.ItemsSource = UsersTable;
+        }
+        catch (SqlException)
+        {
+            MessageBox.Show("Ошибка при взаимодействии с БД", "Обратитесь к системному администратору!", MessageBoxButton.OK,
+                MessageBoxImage.Error);
         }
         catch (Exception)
         {
