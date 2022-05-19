@@ -5,7 +5,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:local="clr-namespace:LibraryApp"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800" MinWidth="600" MinHeight="350">
+        Title="MainWindow" Height="550" Width="1150" MinWidth="600" MinHeight="350">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="0.1*"/>

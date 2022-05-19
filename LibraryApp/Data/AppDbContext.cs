@@ -1,4 +1,8 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
+using EntityFrameworkCore.Triggered;
+using Microsoft.EntityFrameworkCore;
 
 namespace LibraryApp.Data;
 
@@ -17,6 +21,3 @@ public class AppDbContext : DbContext
         optionsBuilder.UseSqlServer(@"Server=DESKTOP-6A8L3F5;Database=LibraryAppDB;Trusted_Connection=True;TrustServerCertificate=True");
     }
 }
-
-
-

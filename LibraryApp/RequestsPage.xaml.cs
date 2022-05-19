@@ -51,6 +51,7 @@ public partial class RequestsPage : Page
             context.Books.Find(request.BookId)!.Amount--;
             context.SaveChanges();
             UpdateTable();
+
         }
         catch (SqlException)
         {

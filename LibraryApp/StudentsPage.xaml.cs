@@ -89,6 +89,7 @@ public partial class StudentsPage : Page
                             x.Login.Contains(SearchBarTBX.Text)))
             );
             DataGrid.ItemsSource = UsersTable;
+            MessageBox.Show("Операция завершена!", "Успех!", MessageBoxButton.OK, MessageBoxImage.Information);
         }
         catch (SqlException)
         {

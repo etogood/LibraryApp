@@ -10,7 +10,7 @@
         <StackPanel>
             <TextBox Name="SearchBarTBX" TextChanged="SearchBarTBXOnTextChanged"/>
             <Button Height="30" Content="Подтвердить добавление/изменение пользователя" Click="ButtonBase_OnClick"/>
-            <DataGrid Name="DataGrid" AutoGenerateColumns="False" ColumnWidth="auto">
+            <DataGrid Name="DataGrid" Width="auto" AutoGenerateColumns="False" ColumnWidth="auto">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Фамилия" Binding="{Binding Surname}"/>
                     <DataGridTextColumn Header="Имя" Binding="{Binding Name}"/>

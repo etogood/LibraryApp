@@ -5,21 +5,51 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:local="clr-namespace:LibraryApp"
       mc:Ignorable="d"
-      Title="PickTheBookPage" Height="auto" Width="auto">
-    <StackPanel>
+      Title="PickTheBookPage" Height="Auto" Width="auto" PreviewKeyUp="PickABookPage_OnKeyDown">
+    <StackPanel Orientation="Horizontal">
+        <StackPanel Margin="10">
+            <Label Content="Новый автор" HorizontalAlignment="Center"/>
+            <StackPanel Orientation="Horizontal" Margin="2">
+                <Label Content="Ф"/>
+                <TextBox Width="100" Height="20" Name="surnameBox"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="2">
+                <Label Content="И"/>
+                <TextBox Height="20" Width="100" Name="nameBox"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="2">
+                <Label Content="О"/>
+                <TextBox Height="20" Width="100" Name="patronymicBox"/>
+            </StackPanel>
+            <Button Name="Add1" Content="Добавить" Click="AuthorButtonClick"/>
+            <Label Content="Новый жанр" HorizontalAlignment="Center"/>
+            <StackPanel Orientation="Horizontal" Margin="2">
+                <TextBox Width="120" Height="20" Name="genreBox"/>
+            </StackPanel>
+            <Button Name="Add2" Content="Добавить" Click="GenreButtonClick"/>
+            <Label Content="Новый издатель" HorizontalAlignment="Center"/>
+            <StackPanel Orientation="Horizontal" Margin="2">
+                <TextBox Width="120" Height="20" Name="publisherBox"/>
+            </StackPanel>
+            <Button Name="Add3" Content="Добавить" Click="PublisherButtonClick"/>
+        </StackPanel>
+        <StackPanel>
         <TextBox Name="SearchBarTBX" TextChanged="SearchBarTBXOnTextChanged"/>
         <Button Content="Запросить книгу" Height="30" Click="TakeABookButtonClick"/>
-        <DataGrid Name="DataGrid" AutoGenerateColumns="False" ColumnWidth="auto">
+        <DataGrid Name="DataGrid" Width="auto" AutoGenerateColumns="False" ColumnWidth="auto" CanUserAddRows="False" CanUserDeleteRows="False" RowEditEnding="DataGrid_OnRowEditEnding">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Название" Binding="{Binding BookName}"/>
-                <DataGridTextColumn Header="Автор" Binding="{Binding Author.AuthorFullName}"/>
-                <DataGridTextColumn Header="Жанр" Binding="{Binding Genre.GenreName}"/>
-                <DataGridTextColumn Header="Издатель" Binding="{Binding Publisher.PublisherName}"/>
-                <DataGridTextColumn Header="Редактор" Binding="{Binding RedactorFullName}"/>
-                <DataGridTextColumn Header="ISBN" Binding="{Binding ISBN}"/>
-                <DataGridTextColumn Header="Кол-во страниц" Binding="{Binding NumberOfPages}"/>
-                <DataGridTextColumn Header="Кол-во в наличии" Binding="{Binding Amount}"/>
+                <DataGridTextColumn Header="Название" Binding="{Binding BookName, UpdateSourceTrigger=PropertyChanged}"/>
+                <DataGridComboBoxColumn x:Name="authorCB" Header="Автор" SelectedItemBinding="{Binding Author}" DisplayMemberPath="AuthorFullName"/>
+                <DataGridComboBoxColumn x:Name="genreCB" Header="Жанр" SelectedItemBinding="{Binding Genre}" DisplayMemberPath="GenreName"/>
+                <DataGridComboBoxColumn x:Name="publisherCB" Header="Издатель" SelectedItemBinding="{Binding Publisher}" DisplayMemberPath="PublisherName"/>
+                <DataGridTextColumn Header="Редактор" Binding="{Binding RedactorFullName, UpdateSourceTrigger=PropertyChanged}"/>
+                <DataGridTextColumn Header="Год издания" Binding="{Binding YearOfIssue, UpdateSourceTrigger=PropertyChanged}"/>
+                <DataGridTextColumn Header="ISBN" Binding="{Binding ISBN, UpdateSourceTrigger=PropertyChanged}"/>
+                <DataGridTextColumn Header="Кол-во страниц" Binding="{Binding NumberOfPages, UpdateSourceTrigger=PropertyChanged}"/>
+                <DataGridTextColumn Header="В наличии" Binding="{Binding Amount, UpdateSourceTrigger=PropertyChanged}"/>
             </DataGrid.Columns>
         </DataGrid>
+        <Button Name="AddBookButton" Content="Добавить книгу" Height="30" Click="ButtonBase_OnClick"/>
+        </StackPanel>
     </StackPanel>
 </Page>

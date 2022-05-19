@@ -15,7 +15,7 @@ public class TakenBook
     [NotMapped] private string _isOverdue;
     [NotMapped] public string IsOverdue
     {
-        get => DateOfDeadline.CompareTo(DateTime.Now) < 0 ? "Просрочено" : "";
+        get => DateOfDeadline.CompareTo(DateTime.Now) < 0 ? "Просрочено" : string.Empty;
         set => _isOverdue = value;
     }
 

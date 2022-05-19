@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LibraryApp.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20220516155523_init")]
+    [Migration("20220519111114_init")]
     partial class init
     {
         /// <inheritdoc />
@@ -182,6 +182,9 @@ namespace LibraryApp.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("TakenBookId"), 1L, 1);
 
                     b.Property<int>("BookId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Code")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("DateOfDeadline")

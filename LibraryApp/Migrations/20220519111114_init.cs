@@ -5,25 +5,25 @@
 namespace LibraryApp.Migrations
 {
     /// <inheritdoc />
-    public partial class Code : Migration
+    public partial class init : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.AddColumn<int>(
-                name: "Code",
-                table: "TakenBooks",
-                type: "int",
-                nullable: false,
-                defaultValue: 0);
+            migrationBuilder.DropColumn(
+                name: "AmountOfOverdue",
+                table: "Users");
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropColumn(
-                name: "Code",
-                table: "TakenBooks");
+            migrationBuilder.AddColumn<int>(
+                name: "AmountOfOverdue",
+                table: "Users",
+                type: "int",
+                nullable: false,
+                defaultValue: 0);
         }
     }
 }

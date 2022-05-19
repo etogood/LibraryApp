@@ -17,7 +17,7 @@
         </Grid.RowDefinitions>
         <Button Grid.Column="0" Content="Принять" Height="30" Click="AcceptButtonClick"/>
         <Button Grid.Column="1" Content="Отказать" Height="30" Click="DenyButtonClick"/>
-        <DataGrid Grid.Row="1" Grid.ColumnSpan="2" Name="DataGrid" AutoGenerateColumns="False" ColumnWidth="auto" CanUserDeleteRows="False" CanUserAddRows="False" IsReadOnly="True"> <DataGrid.Columns>
+        <DataGrid Grid.Row="1" Grid.ColumnSpan="2" Width="auto" Name="DataGrid" AutoGenerateColumns="False" ColumnWidth="auto" CanUserDeleteRows="False" CanUserAddRows="False" IsReadOnly="True"> <DataGrid.Columns>
                 <DataGridTextColumn Header="Книга" Binding="{Binding Book.BookFullName}"/>
                 <DataGridTextColumn Header="Запросивший" Binding="{Binding User.FullName}"/>
             </DataGrid.Columns>
